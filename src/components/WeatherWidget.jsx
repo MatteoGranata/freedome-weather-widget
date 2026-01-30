@@ -3,10 +3,8 @@ import DailyWeather from "./DailyWeather";
 import HourlyWeather from "./HourlyWeather";
 import SwipeContainer from "./SwipeContainer";
 
-export default function WeatherWidget() {
-  const coords = { lat: 40.7128, lon: -74.006 }; // Example coordinates (New York City)
-
-  const { lat, lon } = coords;
+export default function WeatherWidget({location}) {
+  const { lat, lon } = location;
   return (
     <>
       <div className="max-w-[90vw] md:max-w-xl bg-white mx-auto rounded-4xl  shadow-xl overflow-hidden">
