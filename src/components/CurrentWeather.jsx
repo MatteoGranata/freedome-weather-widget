@@ -6,12 +6,12 @@ export default function CurrentWeather({ lat, lon }) {
   if (error) return <p>{error}</p>;
   return (
     <>
-      <div className="grid grid-cols-2 gap-4 items-center justify-items-center rounded-lg">
+      <div className="grid grid-cols-2 gap-4 items-center justify-items-center rounded-lg px-8 py-5 md:py-0">
         <div className="text-start">
           <p className="text-8xl text-[#313A52] font-bold">
             {data?.current?.main?.temp?.toFixed(0)}°
           </p>
-          <p className="text-lg font-semibold text-gray-300">
+          <p className="text-sm md:text-lg font-semibold text-gray-300">
             {data?.current?.name}, {" " + data?.current?.sys?.country}
           </p>
         </div>
