@@ -1,0 +1,24 @@
+import { useWeather } from "../hooks/useWeather";
+
+export default function CurrentWeather({ lat, lon }) {
+  const { data, loading, error } = useWeather(lat, lon);
+  if (loading) return <p>Loading current weather...</p>;
+  if (error) return <p>{error}</p>;
+  return (
+    <>
+      <div>
+        <div>
+          <p>{data?.current?.main?.temp?.toFixed(0)}°</p>
+          <p>
+            {data?.current?.name}, {" " + data?.current?.sys?.country}
+          </p>
+        </div>
+        <img
+          src={`https://openweathermap.org/img/wn/${data?.current?.weather?.[0]?.icon}@4x.png`}
+          alt="weather icon"
+          draggable="false"
+        />
+      </div>
+    </>
+  );
+}
