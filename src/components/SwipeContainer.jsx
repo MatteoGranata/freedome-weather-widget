@@ -37,23 +37,33 @@ export default function SwipeContainer({ children }) {
       setCurrentIndex(currentIndex + 1);
     else if (delta < -50 && currentIndex > 0) setCurrentIndex(currentIndex - 1);
   };
+
   return (
     <>
-      <div
-        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-      >
-        {children.map((child, idx) => (
-          <div key={idx}>{child}</div>
-        ))}
-        <div>
+      <div className="relative overflow-hidden">
+        <div
+          className="flex transition-transform duration-300 cursor-grab active:cursor-grabbing"
+          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+        >
+          {children.map((child, idx) => (
+            <div key={idx} className="shrink-0 w-full select-none">
+              {child}
+            </div>
+          ))}
+        </div>
+        <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-2 cursor-pointer">
           {children.map((_, idx) => (
-            <span key={idx}></span>
+            <span
+              key={idx}
+              onClick={() => setCurrentIndex(idx)}
+              className={`w-2 h-2 rounded-full ${idx === currentIndex ? "bg-[#313A52]" : "bg-gray-300"}`}
+            />
           ))}
         </div>
       </div>

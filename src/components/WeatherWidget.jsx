@@ -9,7 +9,7 @@ export default function WeatherWidget() {
   const { lat, lon } = coords;
   return (
     <>
-      <div>
+      <div className="max-w-[90vw] md:max-w-xl bg-white mx-auto rounded-4xl  shadow-xl overflow-hidden">
         <SwipeContainer>
           <CurrentWeather lat={lat} lon={lon} />
           <DailyWeather lat={lat} lon={lon} />

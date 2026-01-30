@@ -6,17 +6,20 @@ export default function HourlyWeather({ lat, lon }) {
   if (error) return <p>{error}</p>;
   return (
     <>
-      <div>
+      <div className="flex gap-4 w-full h-full items-center justify-evenly">
         {data?.forecast?.list?.slice(0, 5).map((item) => (
-          <div key={item.dt}>
-            <p>{item.main.temp.toFixed(0)}°</p>
+          <div
+            key={item.dt}
+            className="flex flex-col items-center justify-center h-full text-[#313A52]"
+          >
+            <p className="font-semibold">{item.main.temp.toFixed(0)}°</p>
             <img
               src={`https://openweathermap.org/img/wn/${item.weather[0].icon}@4x.png`}
               alt="weather icon"
               draggable="false"
             />
-            <p>
-              {() => {
+            <p className="font-semibold flex flex-col items-center">
+              {(() => {
                 const date = new Date(item.dt_txt);
                 const timeString = date.toLocaleTimeString("en-US", {
                   hour: "numeric",
@@ -32,7 +35,7 @@ export default function HourlyWeather({ lat, lon }) {
                     </span>
                   </>
                 );
-              }}
+              })()}
             </p>
           </div>
         ))}

@@ -6,14 +6,17 @@ export default function CurrentWeather({ lat, lon }) {
   if (error) return <p>{error}</p>;
   return (
     <>
-      <div>
-        <div>
-          <p>{data?.current?.main?.temp?.toFixed(0)}°</p>
-          <p>
+      <div className="grid grid-cols-2 gap-4 items-center justify-items-center rounded-lg">
+        <div className="text-start">
+          <p className="text-8xl text-[#313A52] font-bold">
+            {data?.current?.main?.temp?.toFixed(0)}°
+          </p>
+          <p className="text-lg font-semibold text-gray-300">
             {data?.current?.name}, {" " + data?.current?.sys?.country}
           </p>
         </div>
         <img
+          className="w-full"
           src={`https://openweathermap.org/img/wn/${data?.current?.weather?.[0]?.icon}@4x.png`}
           alt="weather icon"
           draggable="false"
